@@ -15,6 +15,11 @@ public class ExceptionHandlers {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Void> handleRuntimeException() {
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(ProductDoesNotExistException.class)
     public ResponseEntity<ExceptionDto> handleProductDoesNotExistException(ProductDoesNotExistException e) {
         ExceptionDto exceptionDto = new ExceptionDto();

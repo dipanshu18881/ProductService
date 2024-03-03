@@ -10,11 +10,11 @@ import lombok.Setter;
 public class Product extends BaseModel{
     private String title;
     private Double price;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     private Category category;
     private String description;
     private String imageUrl;
-//    private int numberOfSales;
+    private int numberOfSales;
 }
 
 //  1     ->     1
