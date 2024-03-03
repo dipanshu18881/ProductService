@@ -9,13 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-    private ProductService productService;
+    private final ProductService productService;
 
     @Autowired
     public ProductController(@Qualifier("selfProductService") ProductService productService) {
@@ -24,18 +23,9 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
-        List<Product> finalProducts = new ArrayList<>();
-
-        for(Product product: products) {
-            product.setTitle(product.getTitle());
-            finalProducts.add(product);
-        }
-
-        ResponseEntity<List<Product>> allProducts = new ResponseEntity<>(
-                finalProducts, HttpStatus.OK
+        return new ResponseEntity<>(
+                productService.getAllProducts(), HttpStatus.OK
         );
-        return allProducts;
     }
 
     @GetMapping("/{id}")
@@ -44,7 +34,6 @@ public class ProductController {
                 productService.getSingleProduct(id),
                 HttpStatus.OK
         );
-        //return productService.getSingleProduct(id);
     }
 
     @PostMapping
@@ -53,7 +42,6 @@ public class ProductController {
                 productService.addNewProduct(product),
                 HttpStatus.CREATED
         );
-        //return productService.addNewProduct(product);
     }
 
     @PatchMapping("/{id}")
@@ -62,7 +50,6 @@ public class ProductController {
                 productService.updateProduct(id, product),
                 HttpStatus.ACCEPTED
         );
-        //return productService.updateProduct(id, product);
     }
 
     @PutMapping("/{id}")
@@ -71,12 +58,10 @@ public class ProductController {
                 productService.replaceProduct(id, product),
                 HttpStatus.ACCEPTED
         );
-        //return productService.replaceProduct(id, product);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> deleteProduct(@PathVariable("id") Long id) {
         return new ResponseEntity<>(productService.deleteProduct(id), HttpStatus.OK);
     }
-
 }

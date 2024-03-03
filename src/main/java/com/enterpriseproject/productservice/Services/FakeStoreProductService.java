@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Autowired
     public FakeStoreProductService(RestTemplate restTemplate) {
@@ -66,6 +66,7 @@ public class FakeStoreProductService implements ProductService {
 
         List<Product> allProducts = new ArrayList<>();
 
+        assert response != null;
         for(FakeStoreProductDto dto: response) {
             allProducts.add(convertFakeStoreProductToProduct(dto));
         }
@@ -100,8 +101,10 @@ public class FakeStoreProductService implements ProductService {
 
         List<Product> allProducts = new ArrayList<>();
 
-        for(FakeStoreProductDto dto: response) {
-            allProducts.add(convertFakeStoreProductToProduct(dto));
+        if (response != null) {
+            for(FakeStoreProductDto dto: response) {
+                allProducts.add(convertFakeStoreProductToProduct(dto));
+            }
         }
 
         return allProducts;

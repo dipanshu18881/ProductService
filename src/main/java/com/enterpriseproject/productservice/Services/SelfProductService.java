@@ -8,10 +8,8 @@ import com.enterpriseproject.productservice.Repositories.ProductRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Primary
 @Service("selfProductService")
@@ -30,7 +28,6 @@ public class SelfProductService implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-//        List<Product> allProducts = productRepository.findAll();
         return productRepository.findAll();
     }
 
@@ -51,12 +48,8 @@ public class SelfProductService implements ProductService {
     //  GET ALL PRODUCT CATEGORIES
     @Override
     public String[] getAllCategories() {
-        List<String> categoryNames = categoryRepository.findAll()
-                .stream()
-                .map(Category::getName)
-                .collect(Collectors.toList());
-
-        return categoryNames.toArray(new String[0]);
+        List<Category> categories = categoryRepository.findAll();
+        return categories.stream().map(Category::getName).toList().toArray(new String[0]);
     }
 
 
@@ -70,13 +63,7 @@ public class SelfProductService implements ProductService {
     @Override
     public Product addNewProduct(Product product) {
         Optional<Category> categoryOptional = categoryRepository.findByName(product.getCategory().getName());
-
-        if (categoryOptional.isEmpty()) {
-            product.setCategory(categoryRepository.save(product.getCategory()));
-        } else {
-            product.setCategory(categoryOptional.get());
-        }
-
+        product.setCategory(categoryOptional.get());
         return productRepository.save(product);
     }
 
@@ -107,10 +94,10 @@ public class SelfProductService implements ProductService {
 
         Product savedProduct = productOptional.get();
 
-        if(savedProduct.getTitle() != null) savedProduct.setTitle(product.getTitle());
-        if(savedProduct.getDescription() != null) savedProduct.setDescription(product.getDescription());
-        if(savedProduct.getPrice() != null) savedProduct.setPrice(product.getPrice());
-        if(savedProduct.getImageUrl() != null) savedProduct.setImageUrl(product.getImageUrl());
+        savedProduct.setTitle(product.getTitle());
+        savedProduct.setDescription(product.getDescription());
+        savedProduct.setPrice(product.getPrice());
+        savedProduct.setImageUrl(product.getImageUrl());
 
         return productRepository.save(savedProduct);
     }

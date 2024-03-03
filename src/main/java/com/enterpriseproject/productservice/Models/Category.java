@@ -10,8 +10,6 @@ import java.util.List;
 @Setter
 @Entity
 public class Category extends BaseModel{
-    @OneToMany  //  being already mapped in product class with an attribute called category
-    private List<Product> products;
     private String name;
 }
 
