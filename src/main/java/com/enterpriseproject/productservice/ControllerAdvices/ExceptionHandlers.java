@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionHandlers {
 
     @ExceptionHandler(ArithmeticException.class)
-    public ResponseEntity<Void> handleRArithmeticException() {
+    public ResponseEntity<Void> handleArithmeticException() {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Void> handleRuntimeException() {
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(RuntimeException.class)
+//    public ResponseEntity<Void> handleRuntimeException() {
+//        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
     @ExceptionHandler(ProductDoesNotExistException.class)
     public ResponseEntity<ExceptionDto> handleProductDoesNotExistException(ProductDoesNotExistException e) {
