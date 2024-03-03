@@ -30,15 +30,14 @@ public class SelfProductService implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        List<Product> allProducts = new ArrayList<>();
-        productRepository.findAll().forEach(allProducts::add);
-        return allProducts;
+//        List<Product> allProducts = productRepository.findAll();
+        return productRepository.findAll();
     }
 
 
     @Override
     public Product getSingleProduct(Long id) throws ProductDoesNotExistException {
-        Optional<Product> productOptional = productRepository.findById(1L);
+        Optional<Product> productOptional = productRepository.findById(id);
 
         if(productOptional.isEmpty()) {
             throw new ProductDoesNotExistException("Product with id: " + id + " does not exist");
