@@ -1,0 +1,7 @@
+Get all products
+Get a single product
+Get all categories
+Get in category
+Add new product
+Update a product
+Delete a product
