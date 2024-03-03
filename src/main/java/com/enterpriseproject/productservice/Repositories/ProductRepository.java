@@ -12,17 +12,17 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findByTitleContaining(String word);
-    long deleteByTitle(String title);
-    List<Product> findByTitleAndDescription(String title, String description);
-    Product findByIdAndCategoryOrderByTitle(Long id, Category category);
-    List<Product> findByCategory_Id(Long id);
-    Optional<Product> findById(Long id);
+//    List<Product> findByTitleContaining(String word);
+//    long deleteByTitle(String title);
+//    List<Product> findByTitleAndDescription(String title, String description);
+//    Product findByIdAndCategoryOrderByTitle(Long id, Category category);
+//    List<Product> findByCategory_Id(Long id);
+//    Optional<Product> findById(Long id);
 
-    Product save(Product product);
+//    Product save(Product product);
 
-    @Query("SELECT p FROM Product p")
-    List<Product> findAll();
+//    @Query("SELECT p FROM Product p")
+//    List<Product> findAll();
     List<Product> findByCategoryName(String category);
 
 
