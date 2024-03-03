@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Primary
 @Service("selfProductService")
@@ -29,7 +30,9 @@ public class SelfProductService implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return new ArrayList<>(productRepository.findAll());
+        List<Product> allProducts = new ArrayList<>();
+        productRepository.findAll().forEach(allProducts::add);
+        return allProducts;
     }
 
 
@@ -52,7 +55,7 @@ public class SelfProductService implements ProductService {
         List<String> categoryNames = categoryRepository.findAll()
                 .stream()
                 .map(Category::getName)
-                .toList();
+                .collect(Collectors.toList());
 
         return categoryNames.toArray(new String[0]);
     }
