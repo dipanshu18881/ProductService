@@ -3,6 +3,7 @@ package com.enterpriseproject.productservice.Repositories;
 import com.enterpriseproject.productservice.Models.Category;
 import com.enterpriseproject.productservice.Models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product save(Product product);
 
+    @Query("SELECT p FROM Product p")
     List<Product> findAll();
     List<Product> findByCategoryName(String category);
 

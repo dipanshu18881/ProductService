@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class CategoryController {
-    private ProductService productService;
+    private final ProductService productService;
 
     public CategoryController(ProductService productService) {
         this.productService = productService;
