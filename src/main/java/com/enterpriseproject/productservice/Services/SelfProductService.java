@@ -62,8 +62,15 @@ public class SelfProductService implements ProductService {
 
     @Override
     public Product addNewProduct(Product product) {
+        // check if category exists or not if not then save it with same name and id
         Optional<Category> categoryOptional = categoryRepository.findByName(product.getCategory().getName());
-        product.setCategory(categoryOptional.get());
+
+        if(categoryOptional.isEmpty()){
+//            product.setCategory(categoryRepository.save(product.getCategory()));
+            // Here we have used cascade type persist in category entity, so we don't need to save category explicitly
+        } else {
+            product.setCategory(categoryOptional.get());
+        }
         return productRepository.save(product);
     }
 
