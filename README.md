@@ -5,6 +5,6 @@ Integrated the following services based on the microservice based architecture f
 
 1.  Product Service    :    (  Current repository  )
 2.  User Service       :    https://github.com/dipanshu18881/UserService
-3.  Email Service      :
-4.  Payment Service    :
+3.  Email Service      :    https://github.com/dipanshu18881/EmailService
+4.  Payment Service    :    https://github.com/dipanshu18881/PaymentService
 
