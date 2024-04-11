@@ -17,7 +17,7 @@ public class ExceptionHandlers {
 
 //    @ExceptionHandler(RuntimeException.class)
 //    public ResponseEntity<Void> handleRuntimeException() {
-//        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 //    }
 
     @ExceptionHandler(ProductDoesNotExistException.class)
@@ -28,4 +28,5 @@ public class ExceptionHandlers {
 
         return new ResponseEntity<>(exceptionDto, HttpStatus.NOT_FOUND);
     }
+
 }
